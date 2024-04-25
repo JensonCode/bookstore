@@ -38,7 +38,7 @@ export const bookSlice = createSlice({
     },
     // add a book to the book list
     add: (state, action: PayloadAction<bookFormData>) => {
-      const newBook = { id: state.books.length + 1, ...action.payload };
+      const newBook = { id: state.books.length + 2, ...action.payload };
       state.books.push(newBook);
 
       state.openModal = false;
