@@ -9,7 +9,7 @@ import { RootState } from '@/lib/redux/store';
 export default function BookList() {
   const books = useSelector((state: RootState) => state.books.books);
   return (
-    <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+    <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
       {books.map((book, index) => (
         <BookCard
           book={book}

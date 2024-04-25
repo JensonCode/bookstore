@@ -30,8 +30,8 @@ export default function RootLayout({
         {/* pass to redux provider */}
         <StoreProvider books={books}>
           <Navbar />
-          <BookModal />
           {children}
+          <BookModal />
         </StoreProvider>
       </body>
     </html>
