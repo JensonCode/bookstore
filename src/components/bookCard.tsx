@@ -3,6 +3,7 @@ import { setSelectedBook, remove } from '@/lib/redux/features/books/bookSlice';
 import { useAppStore } from '@/lib/redux/hooks';
 import { cn } from '@/utils/cn';
 import Button from './ui/button';
+import { deleteBook } from '@/server/book';
 
 type CardProps = {
   book: Book;
@@ -11,10 +12,10 @@ type CardProps = {
 export default function BookCard({ book }: CardProps) {
   const store = useAppStore();
 
-  const handleDeleteButtonOnClick = () => {
+  const handleDeleteButtonOnClick = async () => {
     // i could delete book from database /server
     // usually i use react query for client components
-
+    await deleteBook(book.id);
     // if delete success, i delete the book from state
     store.dispatch(remove(book.id));
   };
