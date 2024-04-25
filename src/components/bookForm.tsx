@@ -88,6 +88,11 @@ export default function BookForm() {
             'border-gray-500 border-2 rounded-[5px] p-2'
           )}
         ></textarea>
+        {!!form.formState.errors.description && (
+          <span className='text-sm text-red-500'>
+            {form.formState.errors.description?.message}
+          </span>
+        )}
       </fieldset>
 
       <div className='flex justify-end'>
