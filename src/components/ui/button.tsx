@@ -2,9 +2,15 @@ import { cn } from '@/utils/cn';
 
 interface ButtonProps extends React.BaseHTMLAttributes<HTMLButtonElement> {}
 
-export default function Button({ children }: ButtonProps) {
+export default function Button({ children, className, ...props }: ButtonProps) {
   return (
-    <button className={cn('h-12 w-24 md:w-36 bg-white rounded-md p-2')}>
+    <button
+      {...props}
+      className={cn(
+        className,
+        'h-10 w-30 md:w-36 rounded-md p-2 max-md:text-sm'
+      )}
+    >
       {children}
     </button>
   );

@@ -8,7 +8,7 @@ import Button from './ui/button';
 
 export default function Navbar() {
   return (
-    <nav className='sticky top-0 w-full bg-indigo-900/90 h-[60px] flex items-center justify-between px-10 z-10'>
+    <nav className='sticky top-0 w-full bg-indigo-900/90 h-[60px] flex items-center justify-between px-8 md:px-10 z-10'>
       <Link
         href='/'
         className='font-bold text-base md:text-xl text-white'
@@ -17,11 +17,7 @@ export default function Navbar() {
         <span className='text-blue-500'>BookStore</span>
       </Link>
 
-      <Button>
-        <span className='text-indigo-900 font-bold max-md:text-sm'>
-          Add a book
-        </span>
-      </Button>
+      <Button className='text-indigo-900 bg-white font-bold'>Add a book</Button>
     </nav>
   );
 }
