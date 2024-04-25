@@ -11,6 +11,14 @@ type CardProps = {
 export default function BookCard({ book }: CardProps) {
   const store = useAppStore();
 
+  const handleDeleteButtonOnClick = () => {
+    // i could delete book from database /server
+    // usually i use react query for client components
+
+    // if delete success, i delete the book from state
+    store.dispatch(remove(book.id));
+  };
+
   return (
     <div
       className={cn(
@@ -47,7 +55,7 @@ export default function BookCard({ book }: CardProps) {
           )}
           onClick={(e) => {
             e.stopPropagation();
-            store.dispatch(remove(book.id));
+            handleDeleteButtonOnClick();
           }}
         >
           Delete this Book

@@ -32,8 +32,17 @@ export default function BookForm() {
   function onBookFormSubmit(formData: bookFormData) {
     if (book?.id) {
       const updateBook: Book = { id: book.id, ...formData };
+
+      // i could update book from database /server
+      // usually i use react query for client components
+
+      // if update success, i update the book from state
       store.dispatch(update(updateBook));
     } else {
+      // i could add book to database /server
+      // usually i use react query for client components
+
+      // if add success, i add the book to state
       store.dispatch(add(formData));
     }
   }
