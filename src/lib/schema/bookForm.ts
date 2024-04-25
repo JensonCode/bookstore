@@ -5,7 +5,7 @@ export const bookFormSchema = z.object({
     .string()
     .min(1, 'Book Name is requied')
     .max(100, 'Book name is too long'),
-  price: z.number().min(0, 'Book Price must be positive value'),
+  price: z.coerce.number().min(1, 'Book Price must be a positive value'),
   category: z
     .string()
     .min(1, 'Book Category is requied')
@@ -17,3 +17,27 @@ export const bookFormSchema = z.object({
 });
 
 export type bookFormData = z.infer<typeof bookFormSchema>;
+
+type FormInput = {
+  name: keyof bookFormData;
+  label: string;
+  type: 'text' | 'number';
+};
+
+export const bookFormInputs: FormInput[] = [
+  {
+    name: 'category',
+    label: 'Book Category',
+    type: 'text',
+  },
+  {
+    name: 'name',
+    label: 'Book Name',
+    type: 'text',
+  },
+  {
+    name: 'price',
+    label: 'Unit Price',
+    type: 'number',
+  },
+];
