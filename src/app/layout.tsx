@@ -2,6 +2,11 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import '@/styles/globals.css';
 
+import Navbar from '@/components/navbar';
+import StoreProvider from '@/components/StoreProvider';
+import { initBookList } from '@/lib/data/books';
+import BookModal from '@/components/bookModal';
+
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -14,9 +19,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // let's say I fetch the book list in root layout
+  // the book list is passed to redux's store provider
+  // server side fetching:
+  const books = initBookList();
+
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {/* pass to redux provider */}
+        <StoreProvider books={books}>{children}</StoreProvider>
+      </body>
     </html>
   );
 }
