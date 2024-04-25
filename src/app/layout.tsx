@@ -28,7 +28,10 @@ export default function RootLayout({
     <html lang='en'>
       <body className={inter.className}>
         {/* pass to redux provider */}
-        <StoreProvider books={books}>{children}</StoreProvider>
+        <StoreProvider books={books}>
+          <Navbar />
+          {children}
+        </StoreProvider>
       </body>
     </html>
   );
