@@ -18,7 +18,11 @@ export default function BookCard({ book }: CardProps) {
         'transition-transform ease-in-out hover:-translate-x-[0.75px] hover:-translate-y-[0.75px] hover:shadow-md',
         'flex flex-col'
       )}
-      onClick={() => store.dispatch(setSelectedBook(book.id))}
+      onClick={() => {
+        if (book.id) {
+          store.dispatch(setSelectedBook(book.id));
+        }
+      }}
     >
       <span className='font-medium text-sm text-gray-600'>{book.category}</span>
 
@@ -34,14 +38,17 @@ export default function BookCard({ book }: CardProps) {
         <p className='line-clamp-5'>{book.description}</p>
       </div>
 
-      <div className='flex justify-end'>
+      <div className='flex justify-end '>
         <Button
           className={cn(
             'bg-red-500 text-white',
             'border-b-2 border-r-2 border-gray-400 hover:border-gray-600',
-            'transition-transform ease-in-out hover:-translate-x-[0.5px] hover:-translate-y-[0.5px] hover:drop-shadow-sm'
+            'transition-transform ease-in-out hover:-translate-x-[0.5px] hover:-translate-y-[0.5px] hover:drop-shadow-sm '
           )}
-          onClick={() => store.dispatch(remove(book.id))}
+          onClick={(e) => {
+            e.stopPropagation();
+            store.dispatch(remove(book.id));
+          }}
         >
           Delete this Book
         </Button>
