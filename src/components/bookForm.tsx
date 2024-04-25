@@ -16,7 +16,6 @@ import { useAppStore } from '@/lib/redux/hooks';
 import { add, update } from '@/lib/redux/features/books/bookSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/redux/store';
-import { addBook, editBook } from '@/server/book';
 
 export default function BookForm() {
   const store = useAppStore();
@@ -36,13 +35,13 @@ export default function BookForm() {
 
       // i could update book from database /server
       // usually i use react query for client components
-      editBook(updateBook);
+
       // if update success, i update the book from state
       store.dispatch(update(updateBook));
     } else {
       // i could add book to database /server
       // usually i use react query for client components
-      addBook(formData);
+
       // if add success, i add the book to state
       store.dispatch(add(formData));
     }
