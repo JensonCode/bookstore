@@ -11,7 +11,10 @@ export default function BookList() {
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
       {books.map((book, index) => (
-        <span key={index}>{book.id}</span>
+        <BookCard
+          book={book}
+          key={'book' + index}
+        />
       ))}
     </div>
   );
