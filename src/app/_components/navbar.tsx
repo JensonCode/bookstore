@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import React from 'react';
-import Button from './ui/button';
+import Button from '../../components/ui/button';
 import { useAppStore } from '@/lib/redux/hooks';
 import { toggleModal } from '@/lib/redux/features/books/bookSlice';
 import { Book } from '@/lib/data/books';
