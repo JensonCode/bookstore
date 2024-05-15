@@ -13,7 +13,12 @@ import { InputLabel } from './ui/inputLabel';
 import { cn } from '@/utils/cn';
 import Button from './ui/button';
 import { useAppStore } from '@/lib/redux/hooks';
-import { add, update } from '@/lib/redux/features/books/bookSlice';
+import {
+  add,
+  setSelectedBook,
+  toggleModal,
+  update,
+} from '@/lib/redux/features/books/bookSlice';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/lib/redux/store';
 
@@ -33,17 +38,22 @@ export default function BookForm() {
     if (book?.id) {
       const updateBook: Book = { id: book.id, ...formData };
 
-      // i could update book from database /server
-      // usually i use react query for client components
+      // i could persist the update to database /server
+      // but now the current data is from local (an array)
+      // i persist the persist for now.
 
       // if update success, i update the book from state
       store.dispatch(update(updateBook));
+      store.dispatch(setSelectedBook(undefined));
+      store.dispatch(toggleModal(false));
     } else {
-      // i could add book to database /server
-      // usually i use react query for client components
+      // i could persist the update to database /server
+      // but now the current data is from local (an array)
+      // i skip the persist for now.
 
-      // if add success, i add the book to state
+      // if persist success, i add the book to state
       store.dispatch(add(formData));
+      store.dispatch(toggleModal(false));
     }
   }
 

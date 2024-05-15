@@ -34,14 +34,13 @@ export const bookSlice = createSlice({
       } else {
         state.selectedBook = undefined;
       }
-      state.openModal = true;
     },
     // add a book to the book list
     add: (state, action: PayloadAction<bookFormData>) => {
-      const newBook = { id: state.books.length + 2, ...action.payload };
-      state.books.push(newBook);
+      const length = state.books.length;
 
-      state.openModal = false;
+      const newBook = { id: state.books[length - 1].id + 1, ...action.payload };
+      state.books.push(newBook);
     },
     // remove a book from the book list by its id
     remove: (state, action: PayloadAction<number>) => {
@@ -53,8 +52,6 @@ export const bookSlice = createSlice({
         (book) => book.id === action.payload.id
       );
       state.books[idx] = action.payload;
-
-      state.openModal = false;
     },
     //toggle the modal
     toggleModal: (state, action: PayloadAction<boolean>) => {

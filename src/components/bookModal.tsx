@@ -20,7 +20,6 @@ export default function BookModal() {
         <div
           className='inset-0 fixed bg-black/60 z-10'
           onClick={() => {
-            store.dispatch(setSelectedBook(undefined));
             store.dispatch(toggleModal(!openModal));
           }}
         />
