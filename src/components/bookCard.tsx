@@ -1,5 +1,9 @@
 import { Book } from '@/lib/data/books';
-import { setSelectedBook, remove } from '@/lib/redux/features/books/bookSlice';
+import {
+  setSelectedBook,
+  remove,
+  toggleModal,
+} from '@/lib/redux/features/books/bookSlice';
 import { useAppStore } from '@/lib/redux/hooks';
 import { cn } from '@/utils/cn';
 import Button from './ui/button';
@@ -12,8 +16,9 @@ export default function BookCard({ book }: CardProps) {
   const store = useAppStore();
 
   const handleDeleteButtonOnClick = () => {
-    // i could delete book from database /server
-    // usually i use react query for client components
+    // i could persist the delete to database /server
+    // but now the current data is from local (an array)
+    // i skip the persist for now.
 
     // if delete success, i delete the book from state
     store.dispatch(remove(book.id));
@@ -29,6 +34,7 @@ export default function BookCard({ book }: CardProps) {
       onClick={() => {
         if (book.id) {
           store.dispatch(setSelectedBook(book.id));
+          store.dispatch(toggleModal(true));
         }
       }}
     >
